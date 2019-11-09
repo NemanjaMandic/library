@@ -21,7 +21,7 @@ type PropsT = {
   rows: Array<any>
 }
 
-const BooksTable = (props: PropsT) => {
+export const BooksTable = (props: PropsT) => {
   const { rows, selectBook, openSidebar, inProgress, filterBooksByAuthor } = props;
   
   useEffect(() => {
@@ -64,55 +64,56 @@ const BooksTable = (props: PropsT) => {
     <>
     {inProgress && <Loader />}
     <div className={classes.root}>
-      <div className={classes.paper}>
+      { rows ? (
+         <div className={classes.paper}>
         
-        <div className={classes.tableWrapper}>
-          <Table
-            stickyHeader 
-            className={classes.table}
-            aria-labelledby="tableTitle"
-            aria-label="enhanced table"
-          >
-            <EnhancedTableHead
-              classes={classes}
-              numSelected={selected.length}
-              order={order}
-              orderBy={orderBy}
-              onSelectAllClick={handleSelectAllClick}
-              onRequestSort={handleRequestSort}
-              rowCount={rows.length}
-            />
-            <TableBody>
-              {stableSort(rows, getSorting(order, orderBy))
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, index) => {
-                  return (
-                    <TableRows 
-                    {...row} 
-                    key={row.id} 
-                    onRowClick={() => handleRowClick(row.id)} 
-                    />
-                  );
-                })}
-            </TableBody>
-          </Table>
-        </div>
-        <TablePagination
-          rowsPerPageOptions={[]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          backIconButtonProps={{
-            'aria-label': 'previous page',
-          }}
-          nextIconButtonProps={{
-            'aria-label': 'next page',
-          }}
-          onChangePage={handleChangePage}
-        />
-      </div>
-      
+         <div className={classes.tableWrapper}>
+           <Table
+             stickyHeader 
+             className={classes.table}
+             aria-labelledby="tableTitle"
+             aria-label="enhanced table"
+           >
+             <EnhancedTableHead
+               classes={classes}
+               numSelected={selected.length}
+               order={order}
+               orderBy={orderBy}
+               onSelectAllClick={handleSelectAllClick}
+               onRequestSort={handleRequestSort}
+               rowCount={rows.length}
+             />
+             <TableBody>
+               {stableSort(rows, getSorting(order, orderBy))
+                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                 .map((row) => {
+                   return (
+                     <TableRows 
+                     {...row} 
+                     key={row.id} 
+                     onRowClick={() => handleRowClick(row.id)} 
+                     />
+                   );
+                 })}
+             </TableBody>
+           </Table>
+         </div>
+         <TablePagination
+           rowsPerPageOptions={[]}
+           component="div"
+           count={rows.length}
+           rowsPerPage={rowsPerPage}
+           page={page}
+           backIconButtonProps={{
+             'aria-label': 'previous page',
+           }}
+           nextIconButtonProps={{
+             'aria-label': 'next page',
+           }}
+           onChangePage={handleChangePage}
+         />
+       </div>
+      ) : <h3>No table data</h3>}
     </div>
     </>
   );

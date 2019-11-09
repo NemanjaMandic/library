@@ -91,32 +91,32 @@ const EditBook = (props: PropsT) => {
   return (
     <div className={classes.root}>
      <FormHeader title="Edit Book" />
-         <form className={classes.form} noValidate onSubmit={handleSubmit}>
-        <TextField
-            className={classes.margin}
-            label="Title"
-            disabled
-            onChange={handleChange('title')}
-            value={values.title}
-        />
-         <TextField
-            className={classes.margin}
-            label="Author"
-            disabled
-            onChange={handleChange('author')}
-            value={values.author}
-        />
+    <form className={classes.form} noValidate onSubmit={handleSubmit}>
+      <TextField
+          className={classes.margin}
+          label="Title"
+          disabled
+          onChange={handleChange('title')}
+          value={values.title}
+      />
+      <TextField
+        className={classes.margin}
+        label="Author"
+        disabled
+        onChange={handleChange('author')}
+        value={values.author}
+      />
 
-         <TextField
-            id="date"
-            label="Date of birth (Author)"
-            type="date"
-            disabled
-            defaultValue="2017-05-24"
-            className={`${classes.margin} ${classes.dateBirth}`}
-            InputLabelProps={{
-            shrink: true,
-            }}
+      <TextField
+        id="date"
+        label="Date of birth (Author)"
+        type="date"
+        disabled
+        defaultValue="2017-05-24"
+        className={`${classes.margin} ${classes.dateBirth}`}
+        InputLabelProps={{
+        shrink: true,
+        }}
       />
       <TextField
         id="standard-number"
