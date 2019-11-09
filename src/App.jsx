@@ -12,6 +12,7 @@ import { getBooks } from "./state/books/actions";
 import Layout from "./containers/Layout/Layout";
 import AddBook from './containers/BookForm/AddBook';
 import EditBook from './containers/BookForm/EditBook'
+import Auth from './containers/Auth';
 
 type PropsT = {
   getBooks: Function,
@@ -29,6 +30,7 @@ function App(props: PropsT) {
        <div className="App">
        <Switch>
            <Route exact path="/" component={Layout} />
+           <Route exact path="/auth" component={Auth} />
            <Route exact path="/add-book" component={AddBook} />
            <Route exact path="/edit-book/:id" component={EditBook} />
       </Switch>
