@@ -1,6 +1,6 @@
 // @Flow
 
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -31,15 +31,19 @@ type StateT = {
 const Auth = () => {
     const classes = useStyles();
 
+    const [values, setValues] = useState({
+        email: '',
+        password: ''
+    })
 
-        // const handleChange = name => event => {
-        //     setValues({
-        //       ...values,
-        //       [name]: event.target.value,
+        const handleChange = name => event => {
+            setValues({
+              ...values,
+              [name]: event.target.value,
             
-        //     })
-         
-        // };
+            })
+         console.log(values)
+        };
 
         return(
             <Container component="main" maxWidth="xs">
@@ -53,40 +57,44 @@ const Auth = () => {
                     </Typography>
                     <form className={classes.form} noValidate>
                     <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign In
-          </Button>
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        value={values.email}
+                        onChange={handleChange('email')}
+                        id="email"
+                        label="Email Address"
+                        name="email"
+                        autoComplete="email"
+                        autoFocus
+                    />
+                <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type="password"
+                    id="password"
+                    value={values.password}
+                    onChange={handleChange('password')}
+                    autoComplete="current-password"
+                />
+                <FormControlLabel
+                    control={<Checkbox value="remember" color="primary" />}
+                    label="Remember me"
+                />
+                <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}
+                >
+                    Sign In
+                </Button>
           <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">

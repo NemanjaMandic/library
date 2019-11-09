@@ -45,6 +45,9 @@ const Layout = () => {
             Books
           </Typography>
          
+          <Link to="/auth" className={classes.fabLink}>
+            Authenticate
+          </Link>
           <Link to="/add-book" className={classes.fabLink}>
             <Fab color="default" className={classes.fab} aria-label="add" >
               <AddIcon />
